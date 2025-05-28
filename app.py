@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+
 from scripts.secrets_config import *   # Ensures environment is configured
 from scripts.user_form import collect_user_info
 
