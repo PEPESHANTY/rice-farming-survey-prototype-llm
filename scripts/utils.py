@@ -17,11 +17,13 @@ AWS_REGION = os.getenv("AWS_REGION")
 CHAT_HISTORY_BUCKET = os.getenv("CHAT_HISTORY_BUCKET")
 COLLECTED_DATA_BUCKET = os.getenv("COLLECTED_DATA_BUCKET")
 
-s3 = boto3.client("s3", region_name=AWS_REGION,
-    # aws_access_key_id=ACCESS_KEY,
-    # aws_secret_access_key=SECRET_KEY
+s3 = boto3.client("s3",
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY,
+    region_name=AWS_REGION
     )
 
+print("COLLECTED_DATA_BUCKET:", COLLECTED_DATA_BUCKET)
 
 def save_chat_history(chat_log):
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
