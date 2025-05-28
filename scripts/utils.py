@@ -8,8 +8,8 @@ from datetime import datetime
 from io import StringIO
 
 # AWS S3 Setup
-# import dotenv
-# dotenv.load_dotenv(override=True)
+import dotenv
+dotenv.load_dotenv(override=True)
 
 ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
 SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
