@@ -1,6 +1,5 @@
 import streamlit as st
 from PIL import Image
-import scripts.secrets_config  # Ensures secrets are injected into os.environ
 
 from scripts.secrets_config import *   # Ensures environment is configured
 from scripts.user_form import collect_user_info
