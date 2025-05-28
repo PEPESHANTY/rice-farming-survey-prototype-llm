@@ -1,5 +1,5 @@
 # scripts/utils.py
-
+from scripts.secrets_config import *
 import os
 import csv
 import streamlit as st
@@ -17,7 +17,10 @@ AWS_REGION = os.getenv("AWS_REGION")
 CHAT_HISTORY_BUCKET = os.getenv("CHAT_HISTORY_BUCKET")
 COLLECTED_DATA_BUCKET = os.getenv("COLLECTED_DATA_BUCKET")
 
-s3 = boto3.client("s3", region_name=AWS_REGION)
+s3 = boto3.client("s3", region_name=AWS_REGION,
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY
+    )
 
 
 def save_chat_history(chat_log):
