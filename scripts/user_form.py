@@ -2,7 +2,7 @@ import streamlit as st
 
 def collect_user_info():
     professions = [
-        "Farmer","Extension Officer","Cooperatives" ,"Rice Expert Scientist", "Student", "Agricultural Officer",
+        "Farmer","Extension Officer","Cooperatives" ,"Rice Expert Scientist", "Student", "Agricultural Officer"
         # "Researcher", "NGO Representative", "Entrepreneur", "Other"
     ]
 
