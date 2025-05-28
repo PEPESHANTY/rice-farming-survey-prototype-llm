@@ -11,6 +11,8 @@ from io import StringIO
 import dotenv
 dotenv.load_dotenv()
 
+ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
+SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_REGION = os.getenv("AWS_REGION")
 CHAT_HISTORY_BUCKET = os.getenv("CHAT_HISTORY_BUCKET")
 COLLECTED_DATA_BUCKET = os.getenv("COLLECTED_DATA_BUCKET")
