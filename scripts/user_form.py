@@ -2,7 +2,7 @@ import streamlit as st
 
 def collect_user_info():
     professions = [
-        "Farmer", "Rice Expert Scientist", "Student", "Agricultural Officer",
+        "Farmer","Extension Officer","Cooperatives" ,"Rice Expert Scientist", "Student", "Agricultural Officer",
         "Researcher", "NGO Representative", "Entrepreneur", "Other"
     ]
 
@@ -56,7 +56,8 @@ def collect_user_info():
             "West Papua", "West Sulawesi", "West Sumatra", "Yogyakarta"
         ],
         "Ireland": ["Cork", "Dublin", "Galway", "Limerick", "Waterford","Wicklow"],
-        "Laos": [
+        "Laos": [2
+                 *
             "Attapeu", "Bokeo", "Bolikhamxai", "Champasak", "Houaphanh",
             "Khammouane", "Luang Namtha", "Luang Prabang", "Oudomxay",
             "Phongsaly", "Salavan", "Savannakhet", "Sekong", "Vientiane",
