@@ -89,28 +89,37 @@ if st.session_state.view_mode == "main":
         append_query_to_csv(user_input)
 
         history_so_far = [f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.chat_log]
-        response_text, sources = get_response_from_chain(user_input, history_so_far)
-
-        # Extract & format sources
-        unique_sources = sorted(set(doc.metadata.get("source", "Unknown") for doc in sources))
-        sources_text = f"\n\nSources: {', '.join(unique_sources)}" if unique_sources else ""
+        response_text, source_chunks = get_response_from_chain(user_input, history_so_far)
 
         # Show only response in UI
         st.chat_message("assistant").markdown(response_text)
 
         # Save response + sources to chat history (so they'll go into the .txt file)
+        sources_text = "\n\nSources: " + ", ".join(sorted(set(chunk['source'] for chunk in source_chunks)))
+
+        chunks_text = "\n\nChunks retrieved:\n" + "\n".join([
+            f"- {chunk['source']} [chunk {chunk['chunk_index']}] – {chunk['summary']}"
+            for chunk in source_chunks
+        ])
+
+        # Append assistant message to chat log with both source + chunk metadata
         st.session_state.chat_log.append({
             "role": "assistant",
-            "content": f"{response_text}{sources_text}"
+            "content": f"{response_text}{sources_text}{chunks_text}"
         })
 
-        # st.chat_message("assistant").markdown(response_text)
-        # st.session_state.chat_log.append({"role": "assistant", "content": response_text})
-
-        unique_sources = set(doc.metadata.get("source", "Unknown") for doc in sources)
+        # === Sources used dropdown
         with st.expander("📚 Sources used"):
+            unique_sources = set(chunk["source"] for chunk in source_chunks)
             for src in sorted(unique_sources):
                 st.markdown(f"- `{src}`")
+
+        # === Chunks retrieved dropdown
+        with st.expander("📄 Chunks retrieved"):
+            for chunk in source_chunks:
+                st.markdown(
+                    f"- **{chunk['source']}**, chunk `{chunk['chunk_index']}` – _{chunk['summary']}_"
+                )
 
 # === History View Mode ===
 elif st.session_state.view_mode == "history":
